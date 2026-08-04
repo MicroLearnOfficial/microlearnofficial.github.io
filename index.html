@@ -3,18 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MicroLearn - Yakında!</title>
+    <title>MicroLearn - Her Gün Yeni Bir Bilgi</title>
     <style>
-        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #f8f9fa; }
-        .card { text-align: center; padding: 40px; background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        h1 { color: #5B48D9; margin-bottom: 8px; }
-        p { color: #666; }
+        :root {
+            --primary: #5B48D9;
+            --primary-hover: #4A38C2;
+            --bg: #F9FAFB;
+            --card-bg: #FFFFFF;
+            --text-main: #1F2937;
+            --text-muted: #6B7280;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background: var(--bg); color: var(--text-main); line-height: 1.6; }
+
+        header {
+            background: var(--card-bg);
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        .logo { font-size: 20px; font-weight: 700; color: var(--primary); text-decoration: none; }
+        .nav-link { color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: 0.2s; }
+        .nav-link:hover { color: var(--primary); }
+
+        .hero {
+            max-width: 1000px;
+            margin: 80px auto 60px;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .hero h1 { font-size: 44px; font-weight: 800; color: #111827; letter-spacing: -0.02em; margin-bottom: 20px; }
+        .hero p { font-size: 18px; color: var(--text-muted); max-width: 650px; margin: 0 auto 32px; }
+        
+        .btn-playstore {
+            display: inline-block;
+            background: var(--primary);
+            color: #FFF;
+            padding: 14px 32px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 14px rgba(91, 72, 217, 0.3);
+            transition: 0.2s;
+        }
+        .btn-playstore:hover { background: var(--primary-hover); transform: translateY(-1px); }
+
+        .features {
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid #E5E7EB;
+        }
+
+        .feature-card h3 { font-size: 18px; margin-bottom: 10px; color: #111827; }
+        .feature-card p { font-size: 14px; color: var(--text-muted); }
+
+        footer {
+            margin-top: 100px;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid #E5E7EB;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        footer a { color: var(--primary); text-decoration: none; margin: 0 8px; }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h1>MicroLearn</h1>
-        <p>Her gün 5 dakikada yeni bir şey öğrenin. Uygulamamız çok yakında Google Play'de!</p>
-    </div>
+
+    <header>
+        <a href="#" class="logo">MicroLearn</a>
+        <a href="privacy.html" class="nav-link">Gizlilik Politikası</a>
+    </header>
+
+    <section class="hero">
+        <h1>Her Gün 5 Dakikada Kendini Geliştir</h1>
+        <p>MicroLearn ile mikro içeriklerle interaktif ve pratik bir şekilde yeni bilgiler öğrenin. Uygulamamız çok yakında Google Play Store'da!</p>
+        <a href="#" class="btn-playstore">Google Play'de Yakında</a>
+    </section>
+
+    <section class="features">
+        <div class="feature-card">
+            <h3>⚡ Hızlı Öğrenme</h3>
+            <p>Günün yoğunluğunda sadece 5 dakikanızı ayırarak yeni konuları keşfedin ve bilgilerinizi güncel tutun.</p>
+        </div>
+        <div class="feature-card">
+            <h3>🎯 Kişiselleştirilmiş Akış</h3>
+            <p>İlgi alanlarınıza göre şekillenen interaktif kartlar ve özel testlerle öğrenme sürecinizi optimize edin.</p>
+        </div>
+        <div class="feature-card">
+            <h3>🔥 Günlük Seriler</h3>
+            <p>Disiplininizi korumak için günlük serilerinizi (streaks) bozmayın ve gelişiminizi istatistiklerle takip edin.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 MicroLearn Official. Tüm hakları saklıdır.</p>
+        <p style="margin-top: 8px;">
+            <a href="privacy.html">Gizlilik Politikası</a> | 
+            <a href="mailto:microlearn.official@gmail.com">İletişim</a>
+        </p>
+    </footer>
+
 </body>
 </html>
