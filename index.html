@@ -168,15 +168,6 @@
         .stat-num { font-size: 32px; font-weight: 800; background: linear-gradient(135deg,#A855F7,#06B6D4); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
         .stat-label { font-size: 13px; color: var(--muted); margin-top: 4px; font-weight: 500; }
         /* ── SCROLL INDICATOR ── */
-        .scroll-indicator {
-            position:absolute; bottom:36px; left:50%; transform:translateX(-50%);
-            display:flex; flex-direction:column; align-items:center; gap:8px;
-            opacity:0.5; animation: fadeIn 2s 1.5s ease both;
-        }
-        .scroll-mouse { width:24px; height:38px; border:2px solid rgba(255,255,255,0.35); border-radius:12px; position:relative; }
-        .scroll-wheel { width:4px; height:8px; background:#fff; border-radius:2px; position:absolute; top:5px; left:50%; transform:translateX(-50%); animation: scrollWheel 1.5s infinite; }
-        @keyframes scrollWheel { 0%{top:5px;opacity:1} 100%{top:18px;opacity:0} }
-        .scroll-text { font-size:11px; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase; }
         /* ── FLOATING ORBS ── */
         .orb {
             position:absolute; border-radius:50%;
@@ -341,7 +332,10 @@
 <!-- NAVBAR -->
 <nav id="navbar">
     <a href="index.html" class="nav-logo"><img src="MicroLearnNameTransparent1024.png" alt="MicroLearn"></a>
-    <div class="nav-links">
+    <button class="nav-toggle" id="navToggle" aria-label="Menüyü aç" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
         <a href="#features">Özellikler</a>
         <a href="#how">Nasıl Çalışır</a>
         <a href="privacy.html">Gizlilik</a>
@@ -377,14 +371,10 @@
 
     <div class="hero-stats">
         <div class="stat"><div class="stat-num" data-target="1000">0</div><div class="stat-label">Beklenen Kullanıcı</div></div>
-        <div class="stat"><div class="stat-num" data-target="8">0</div><div class="stat-label">Ders Kategorisi</div></div>
+        <div class="stat"><div class="stat-num" data-target="8">0</div><div class="stat-label">Bilgi Kategorisi</div></div>
         <div class="stat"><div class="stat-num" data-target="5">0</div><div class="stat-label">Dakika / Gün</div></div>
     </div>
 
-    <div class="scroll-indicator">
-        <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
-        <span class="scroll-text">Kaydır</span>
-    </div>
 </section>
 
 <!-- FEATURES -->
@@ -661,10 +651,44 @@
 (function(){
     const nav = document.getElementById('navbar');
     window.addEventListener('scroll', ()=>{
+        // Mobilde navbar'ın kendi arka planı var, inline stil onu ezmesin
+        if (window.matchMedia('(max-width: 768px)').matches) return;
         nav.style.background = 'transparent';
         nav.style.backdropFilter = 'none';
         nav.style.boxShadow = 'none';
     }, { passive: true });
+})();
+
+/* ══════════════════════════════════════════
+   3b. MOBİL MENÜ (hamburger)
+══════════════════════════════════════════ */
+(function(){
+    const toggle = document.getElementById('navToggle');
+    const links  = document.getElementById('navLinks');
+    if (!toggle || !links) return;
+
+    const setOpen = (open) => {
+        links.classList.toggle('open', open);
+        toggle.classList.toggle('open', open);
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.setAttribute('aria-label', open ? 'Menüyü kapat' : 'Menüyü aç');
+    };
+
+    toggle.addEventListener('click', () => setOpen(!links.classList.contains('open')));
+
+    // Bir bağlantıya tıklanınca menü kapansın
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+
+    // Menü dışına tıklayınca kapansın
+    document.addEventListener('click', (e) => {
+        if (!links.classList.contains('open')) return;
+        if (!links.contains(e.target) && !toggle.contains(e.target)) setOpen(false);
+    });
+
+    // Masaüstüne geçilirse açık kalmasın
+    window.matchMedia('(min-width: 769px)').addEventListener('change', (e) => {
+        if (e.matches) setOpen(false);
+    });
 })();
 
 /* ══════════════════════════════════════════
@@ -827,6 +851,83 @@
 
 /* Selection */
 ::selection { background:rgba(124,58,237,0.4); color:#fff; }
+
+/* ══════════════════════════════════════════
+   MOBİL NAVBAR
+   Logo masaüstünde 150px — telefonda ekranın
+   yarısını kaplıyordu; linkler de tek satıra
+   sığmayıp taşıyordu. Burada logo küçültülüp
+   linkler hamburger menüye alınıyor.
+══════════════════════════════════════════ */
+.nav-toggle {
+    display: none;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    width: 42px; height: 42px;
+    padding: 0;
+    cursor: pointer;
+    flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+}
+.nav-toggle span {
+    display: block;
+    width: 18px; height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: transform 0.3s, opacity 0.2s;
+}
+.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+@media (max-width: 768px) {
+    nav {
+        padding: 8px 5%;
+        background: rgba(10,10,15,0.72);
+        backdrop-filter: blur(20px) saturate(160%);
+        border-bottom: 1px solid var(--border);
+    }
+    .nav-logo img { height: 52px; }
+    .nav-toggle { display: flex; }
+
+    .nav-links {
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 0 5%;
+        background: rgba(10,10,15,0.96);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease, padding 0.35s ease;
+    }
+    .nav-links.open {
+        max-height: 340px;
+        padding: 8px 5% 20px;
+    }
+    .nav-links a {
+        padding: 15px 2px;
+        font-size: 16px;
+        border-bottom: 1px solid var(--border);
+    }
+    .nav-links a:last-child { border-bottom: none; }
+    .nav-cta {
+        text-align: center;
+        margin-top: 14px;
+        padding: 14px 22px !important;
+    }
+
+    /* Hero, artık daha alçak olan navbar'a göre yukarı çekiliyor */
+    .hero { padding: 96px 20px 64px; }
+
+    /* Dikey ayraç mobilde alt alta dizilince yanlış yerde duruyordu */
+    .hero-stats { gap: 28px 36px; margin-top: 48px; }
+    .hero-stats .stat + .stat { border-left: none; padding-left: 0; }
+}
+
 
 /* Focus outline */
 a:focus-visible { outline:2px solid var(--primary-2); outline-offset:4px; border-radius:4px; }
