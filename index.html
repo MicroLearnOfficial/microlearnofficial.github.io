@@ -26,7 +26,9 @@
             border-bottom: 1px solid #E5E7EB;
         }
 
-        .logo { font-size: 20px; font-weight: 700; color: var(--primary); text-decoration: none; }
+        .logo { font-size: 20px; font-weight: 700; color: var(--primary); text-decoration: none; display: flex; align-items: center; }
+        .logo-img { height: 40px; width: auto; vertical-align: middle; }
+        
         .nav-link { color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: 0.2s; }
         .nav-link:hover { color: var(--primary); }
 
@@ -87,7 +89,9 @@
 <body>
 
     <header>
-        <a href="#" class="logo">MicroLearn</a>
+        <a href="index.html" class="logo">
+            <img src="MicroLearnNameRegular1024.png" alt="MicroLearn Logo" class="logo-img">
+        </a>
         <a href="privacy.html" class="nav-link">Gizlilik Politikası</a>
     </header>
 
