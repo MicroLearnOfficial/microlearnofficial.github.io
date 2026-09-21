@@ -270,6 +270,34 @@
         .avatar.amber  { background:linear-gradient(135deg,#D97706,var(--accent-2)); }
         .author-name  { font-size:14px; font-weight:600; }
         .author-label { font-size:12px; color:var(--muted); }
+        /* ── FAQ ── */
+        .faq-list { display:flex; flex-direction:column; gap:16px; margin-top:56px; max-width:760px; }
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            backdrop-filter: blur(12px);
+            transition: border-color 0.3s, background 0.3s;
+            overflow: hidden;
+        }
+        .faq-item:hover { border-color: rgba(124,58,237,0.35); }
+        .faq-item[open] { border-color: rgba(124,58,237,0.45); background: rgba(124,58,237,0.06); }
+        .faq-item summary {
+            list-style: none; cursor: pointer;
+            display: flex; align-items: center; justify-content: space-between; gap:20px;
+            padding: 22px 26px;
+            font-size: 15px; font-weight: 700; color: var(--text);
+        }
+        .faq-item summary::-webkit-details-marker { display:none; }
+        .faq-icon {
+            flex-shrink:0; width:26px; height:26px; border-radius:50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-2));
+            display:flex; align-items:center; justify-content:center;
+            font-size:16px; font-weight:800; color:#fff;
+            transition: transform 0.3s;
+        }
+        .faq-item[open] .faq-icon { transform: rotate(45deg); }
+        .faq-answer { padding: 0 26px 24px; font-size:14px; color:var(--muted); line-height:1.75; }
         /* ── CTA SECTION ── */
         .cta-section {
             position:relative; z-index:2;
@@ -338,6 +366,7 @@
     <div class="nav-links" id="navLinks">
         <a href="#features">Özellikler</a>
         <a href="#how">Nasıl Çalışır</a>
+        <a href="#faq">SSS</a>
         <a href="privacy.html">Gizlilik</a>
         <a href="#cta" class="nav-cta">Uygulamayı İndir</a>
     </div>
@@ -532,6 +561,40 @@
     </div>
 </div>
 <style>@keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }</style>
+
+<!-- FAQ -->
+<section id="faq" class="section">
+    <div class="section-label reveal">Merak Edilenler</div>
+    <h2 class="reveal section-title">Sıkça Sorulan<br>Sorular</h2>
+    <p class="reveal section-sub">Aklına takılan bir şey varsa, muhtemelen cevabı burada.</p>
+
+    <div class="faq-list reveal">
+        <details class="faq-item">
+            <summary>MicroLearn ücretsiz mi?<span class="faq-icon">+</span></summary>
+            <div class="faq-answer">Evet, uygulamanın tamamı ücretsiz indirilip kullanılabilir. İçinde isteğe bağlı coin satın alma seçenekleri var ama hiçbir özellik için ödeme yapmak zorunda değilsin.</div>
+        </details>
+        <details class="faq-item">
+            <summary>Kullanmak için hesap oluşturmam gerekiyor mu?<span class="faq-icon">+</span></summary>
+            <div class="faq-answer">Hayır, uygulamayı açar açmaz hiçbir kayıt olmadan kullanmaya başlayabilirsin. İstersen ilerlemeni yedeklemek ve liglere katılmak için Google ile bağlanabilirsin, ama bu tamamen isteğe bağlı.</div>
+        </details>
+        <details class="faq-item">
+            <summary>İnternet bağlantısı olmadan kullanabilir miyim?<span class="faq-icon">+</span></summary>
+            <div class="faq-answer">Kartları okumak ve quiz çözmek için internete ihtiyacın yok. Lig sıralaması ve bulut yedekleme gibi bazı özellikler internet bağlantısı gerektiriyor.</div>
+        </details>
+        <details class="faq-item">
+            <summary>Bir gün kart okumayı unutursam serim biter mi?<span class="faq-icon">+</span></summary>
+            <div class="faq-answer">Seri Dondurma özelliği sayesinde arada bir günü kaçırsan bile serin otomatik olarak korunabiliyor — her gün mükemmel olmak zorunda değilsin.</div>
+        </details>
+        <details class="faq-item">
+            <summary>Verilerim güvende mi?<span class="faq-icon">+</span></summary>
+            <div class="faq-answer">Evet. Verilerini nasıl topladığımızı, kullandığımızı ve koruduğumuzu <a href="privacy.html" style="color:var(--primary-2)">Gizlilik Politikamızda</a> ayrıntılı olarak anlattık.</div>
+        </details>
+        <details class="faq-item">
+            <summary>Hangi yaş grubuna uygun?<span class="faq-icon">+</span></summary>
+            <div class="faq-answer">MicroLearn, genel bilgi kartları ve quizlerle her yaştan meraklı kullanıcıya hitap edecek şekilde tasarlandı.</div>
+        </details>
+    </div>
+</section>
 
 <!-- CTA SECTION -->
 <div id="cta" style="position:relative;z-index:2;">
