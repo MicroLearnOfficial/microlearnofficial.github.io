@@ -36,7 +36,7 @@
             --glow: rgba(124,58,237,0.4);
         }
         *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
         body {
             font-family: 'Inter', sans-serif;
             background: var(--bg-dark);
@@ -378,6 +378,14 @@
             background:radial-gradient(circle, rgba(124,58,237,0.08), transparent 70%);
             top:0; left:0;
             will-change:transform;
+        }
+        /* ÖNEMLİ (kullanıcı isteği — bulunan bug, düzeltme: "sağ üstte
+           seçenekler yeri yüzünden site sağa sola oynayabiliyor"): Bu
+           400px'lik parıltı, mousemove ile hareket ediyor — dokunmatik
+           cihazlarda zaten tetiklenmiyor ama gereksiz yere DOM'da durup
+           olası bir taşma kaynağı olmasın diye mobilde tamamen kapatılıyor. */
+        @media (max-width: 768px) {
+            .cursor-glow { display: none; }
         }
     </style>
 </head>
