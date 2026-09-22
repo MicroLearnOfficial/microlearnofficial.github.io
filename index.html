@@ -340,6 +340,23 @@
         .footer-links a { color:var(--muted); text-decoration:none; font-size:13px; transition:color 0.2s; }
         .footer-links a:hover { color:var(--text); }
         .footer-copy { font-size:13px; color:var(--muted); text-align:center; width:100%; margin-top:8px; }
+        /* ── SOSYAL MEDYA İKONLARI ── */
+        .footer-socials { display:flex; gap:14px; }
+        .footer-socials a {
+            width:40px; height:40px; border-radius:50%;
+            display:flex; align-items:center; justify-content:center;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            transition: color 0.25s, border-color 0.25s, transform 0.25s, background 0.25s;
+        }
+        .footer-socials a:hover {
+            color: #fff;
+            border-color: rgba(124,58,237,0.5);
+            background: linear-gradient(135deg, var(--primary), var(--primary-2));
+            transform: translateY(-3px);
+        }
+        .footer-socials svg { width:19px; height:19px; }
         /* ── ANIMATIONS ── */
         @keyframes fadeSlideDown { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
         @keyframes fadeIn { from{opacity:0} to{opacity:1} }
@@ -636,6 +653,17 @@
         <a href="terms.html">Kullanım Şartları</a>
         <a href="delete-account.html">Hesabımı Sil</a>
         <a href="mailto:microlearn.official@gmail.com">İletişim</a>
+    </div>
+    <div class="footer-socials">
+        <a href="https://www.instagram.com/microlearn.app" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@microlearnapp" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.82c-.9-.94-1.4-2.19-1.4-3.48h-3.1v13.44c0 1.63-1.33 2.96-2.96 2.96a2.96 2.96 0 0 1 0-5.92c.28 0 .55.04.8.11V9.87a6.1 6.1 0 0 0-.8-.05A6.11 6.11 0 0 0 3 15.93a6.11 6.11 0 0 0 11.5 2.85 6.06 6.06 0 0 0 .6-2.65v-6.7a7.6 7.6 0 0 0 4.5 1.46V7.75c-1.03 0-2-.34-2.8-.93a4.2 4.2 0 0 1-.2-1z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@MicroLearnApp" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2s-.2-1.5-.8-2.1c-.8-.8-1.7-.8-2.1-.9C15.9 4 12 4 12 4h0s-3.9 0-6.7.2c-.4 0-1.3.1-2.1.9-.6.6-.8 2.1-.8 2.1S2.2 9 2.2 10.7v1.6c0 1.7.2 3.5.2 3.5s.2 1.5.8 2.1c.8.8 1.9.8 2.3.9 1.7.2 7.5.2 7.5.2s3.9 0 6.7-.2c.4-.1 1.3-.1 2.1-.9.6-.6.8-2.1.8-2.1s.2-1.7.2-3.5v-1.6C21.8 9 21.6 7.2 21.6 7.2zM9.9 14.6V8.8l5.4 2.9-5.4 2.9z"/></svg>
+        </a>
     </div>
     <div class="footer-copy">&copy; 2026 MicroLearn Official. Tüm hakları saklıdır.</div>
 </footer>
