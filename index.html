@@ -243,15 +243,38 @@
             position:relative; display:flex; justify-content:center;
         }
         .phone-frame {
-            width:260px; height:520px; border-radius:40px;
+            width:260px; height:534px; border-radius:40px;
             border:2px solid rgba(255,255,255,0.12);
             background:linear-gradient(145deg,rgba(255,255,255,0.07),rgba(255,255,255,0.02));
             backdrop-filter:blur(20px);
             box-shadow:0 40px 80px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.1), 0 0 80px rgba(124,58,237,0.2);
-            display:flex; flex-direction:column; align-items:center; justify-content:center;
-            gap:14px; padding:28px;
+            display:flex; align-items:center; justify-content:center;
+            padding:8px;
             animation:phoneSway 6s ease-in-out infinite;
+            overflow:hidden;
         }
+        .phone-frame-img { width:100%; height:100%; object-fit:cover; border-radius:34px; }
+        /* ── EKRAN GÖRÜNTÜLERİ GALERİSİ ── */
+        .screenshots-strip {
+            display:flex; gap:24px; margin-top:56px;
+            overflow-x:auto; padding:20px 4px 30px;
+            scroll-snap-type:x mandatory;
+            -webkit-overflow-scrolling:touch;
+        }
+        .screenshots-strip::-webkit-scrollbar { height:6px; }
+        .screenshots-strip::-webkit-scrollbar-thumb { background:rgba(124,58,237,0.4); border-radius:3px; }
+        .screenshot-frame {
+            flex:0 0 auto; scroll-snap-align:center;
+            width:200px; height:410px; border-radius:32px;
+            border:2px solid rgba(255,255,255,0.12);
+            background:linear-gradient(145deg,rgba(255,255,255,0.07),rgba(255,255,255,0.02));
+            backdrop-filter:blur(20px);
+            box-shadow:0 24px 50px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+            padding:7px; overflow:hidden;
+            transition:transform 0.3s, box-shadow 0.3s;
+        }
+        .screenshot-frame:hover { transform:translateY(-8px); box-shadow:0 30px 60px rgba(0,0,0,0.6), 0 0 60px rgba(124,58,237,0.25); }
+        .screenshot-frame img { width:100%; height:100%; object-fit:cover; border-radius:26px; }
         @keyframes phoneSway { 0%,100%{transform:translateY(0) rotate(-1deg)} 50%{transform:translateY(-12px) rotate(1deg)} }
         .phone-notch { width:80px; height:24px; background:rgba(0,0,0,0.8); border-radius:12px; position:absolute; top:18px; }
         .phone-card {
@@ -402,6 +425,7 @@
     </button>
     <div class="nav-links" id="navLinks">
         <a href="#features">Özellikler</a>
+        <a href="#screenshots">Görüntüler</a>
         <a href="#how">Nasıl Çalışır</a>
         <a href="#faq">SSS</a>
         <a href="privacy.html">Gizlilik</a>
@@ -525,31 +549,7 @@
         </div>
         <div class="phone-mockup reveal">
             <div class="phone-frame">
-                <div class="phone-notch"></div>
-                <div class="phone-card" style="margin-top:30px">
-                    <div class="phone-card-label">📚 Günün Dersi</div>
-                    <div class="phone-card-title">Kuantum Fiziği'ne Giriş</div>
-                    <div class="phone-progress"><div class="phone-progress-bar"></div></div>
-                    <div style="font-size:11px;color:var(--muted);margin-top:6px">%65 tamamlandı</div>
-                </div>
-                <div class="phone-streak">
-                    🔥 <span>12 günlük seri!</span>
-                </div>
-                <div class="phone-card" style="background:rgba(6,182,212,0.15);border-color:rgba(6,182,212,0.3)">
-                    <div class="phone-card-label">🎯 Günlük Hedef</div>
-                    <div class="phone-card-title" style="font-size:13px">3/3 ders tamamlandı</div>
-                    <div style="color:#06B6D4;font-size:22px;margin-top:4px">✓</div>
-                </div>
-                <div style="display:flex;gap:8px;width:100%">
-                    <div style="flex:1;background:rgba(245,158,11,0.15);border:1px solid rgba(245,158,11,0.3);border-radius:12px;padding:10px;text-align:center;font-size:11px">
-                        <div style="font-size:18px">🏆</div>
-                        <div style="color:var(--muted);margin-top:4px">3. sıra</div>
-                    </div>
-                    <div style="flex:1;background:rgba(124,58,237,0.15);border:1px solid rgba(124,58,237,0.3);border-radius:12px;padding:10px;text-align:center;font-size:11px">
-                        <div style="font-size:18px">⚡</div>
-                        <div style="color:var(--muted);margin-top:4px">420 XP</div>
-                    </div>
-                </div>
+                <img src="screenshots/screenshot-home.jpg" alt="MicroLearn uygulaması Ana Sayfa ekranı" class="phone-frame-img" loading="eager">
             </div>
         </div>
     </div>
@@ -557,6 +557,7 @@
 </section>
 
 <!-- MARQUEE TOPICS -->
+
 <div style="position:relative;z-index:2;overflow:hidden;padding:32px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:0">
     <div style="display:flex;gap:0;animation:marquee 25s linear infinite;width:max-content">
         <div style="display:flex;gap:24px;padding-right:24px;white-space:nowrap">
@@ -598,6 +599,28 @@
     </div>
 </div>
 <style>@keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }</style>
+
+<!-- EKRAN GÖRÜNTÜLERİ -->
+<section id="screenshots" class="section">
+    <div class="section-label reveal">Uygulamadan Görüntüler</div>
+    <h2 class="reveal section-title">Yakından bir bak</h2>
+    <p class="reveal section-sub">Ana Sayfa, kart okuma, quiz ve profil ekranların gerçek görünümü.</p>
+
+    <div class="screenshots-strip reveal">
+        <div class="screenshot-frame">
+            <img src="screenshots/screenshot-home.jpg" alt="MicroLearn Ana Sayfa ekranı — güncel seri, lig ve görevler" loading="lazy">
+        </div>
+        <div class="screenshot-frame">
+            <img src="screenshots/screenshot-card.jpg" alt="MicroLearn kart okuma ekranı — Kaos Teorisi bilgi kartı" loading="lazy">
+        </div>
+        <div class="screenshot-frame">
+            <img src="screenshots/screenshot-quiz.jpg" alt="MicroLearn günlük quiz ekranı — doğru/yanlış soru" loading="lazy">
+        </div>
+        <div class="screenshot-frame">
+            <img src="screenshots/screenshot-profile.jpg" alt="MicroLearn profil ekranı — unvan, lig ve istatistikler" loading="lazy">
+        </div>
+    </div>
+</section>
 
 <!-- FAQ -->
 <section id="faq" class="section">
